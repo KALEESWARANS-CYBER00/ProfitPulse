@@ -1,55 +1,101 @@
 import { useState } from 'react';
 import './InputForm.css';
+import Toast from './Toast';
 
 const InputForm = ({ onCalculate }) => {
   const [amount, setAmount] = useState('');
   const [rate, setRate] = useState('');
   const [years, setYears] = useState('');
   const [type, setType] = useState('lump');
+  const [toastMessage, setToastMessage] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (amount <= 0 || rate <= 0 || years <= 0) {
+      setToastMessage('Please enter valid positive numbers.');
+      return;
+    }
+
+    setToastMessage('');
+
     onCalculate({
-      amount: +amount,
-      rate: +rate,
-      years: +years,
+      amount: parseFloat(amount),
+      rate: parseFloat(rate),
+      years: parseFloat(years),
       type,
     });
   };
 
- return (
-  <div className="form-container">
-    <form onSubmit={handleSubmit}>
-      <h2> Investment Calculator</h2>
-      <input
-        type="number"
-        placeholder="Initial Amount (₹)"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-        required
-      />
-      <input
-        type="number"
-        placeholder="Annual Interest Rate (%)"
-        value={rate}
-        onChange={(e) => setRate(e.target.value)}
-        required
-      />
-      <input
-        type="number"
-        placeholder="Time (Years)"
-        value={years}
-        onChange={(e) => setYears(e.target.value)}
-        required
-      />
-      <select value={type} onChange={(e) => setType(e.target.value)}>
-        <option value="lump">Lump Sum</option>
-        <option value="sip">SIP (Monthly)</option>
-      </select>
-      <button type="submit">Calculate</button>
-    </form>
-  </div>
-);
+  return (
+    <div className="form-container">
+      {toastMessage && (
+        <Toast message={toastMessage} onClose={() => setToastMessage('')} />
+      )}
+
+      <form onSubmit={handleSubmit} className="investment-form" noValidate>
+        <h2 className="form-title">Investment Calculator</h2>
+
+        <div className="form-group">
+          <label htmlFor="amount">Initial Amount (₹)</label>
+          <input
+            id="amount"
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            min="0"
+            step="any"
+            placeholder="e.g., 100000"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="rate">Annual Interest Rate (%)</label>
+          <input
+            id="rate"
+            type="number"
+            value={rate}
+            onChange={(e) => setRate(e.target.value)}
+            min="0"
+            step="any"
+            placeholder="e.g., 8"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="years">Investment Duration (Years)</label>
+          <input
+            id="years"
+            type="number"
+            value={years}
+            onChange={(e) => setYears(e.target.value)}
+            min="1"
+            step="1"
+            placeholder="e.g., 5"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="type">Investment Type</label>
+          <select
+            id="type"
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+          >
+            <option value="lump">Lump Sum</option>
+            <option value="sip">SIP (Monthly)</option>
+          </select>
+        </div>
+
+        <button type="submit" className="submit-btn">
+          Calculate
+        </button>
+      </form>
+    </div>
+  );
 };
 
 export default InputForm;
