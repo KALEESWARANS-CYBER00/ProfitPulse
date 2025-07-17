@@ -1,22 +1,37 @@
-# 💹 ProfitPulse
+# ProfitPulse
 
-**ProfitPulse** is a dynamic investment calculator built with React + Vite + Tailwind CSS. It allows users to simulate returns on SIP (Systematic Investment Plan) and lump-sum investments using compound interest formulas.
+ProfitPulse is a sleek and interactive investment calculator built using React. It helps users forecast future returns for both lump sum and SIP (Systematic Investment Plan) investments. Designed with simplicity and clarity in mind, ProfitPulse is perfect for investors, learners, and financial planners.
 
-## 🚀 Features
-- SIP & Lump-sum modes
-- Real-time ROI calculations
-- Interactive UI with Tailwind CSS
-- Future scalability with backend support
+---
 
-## 🛠 Tech Stack
-- React + Vite
-- Tailwind CSS
-- JavaScript (ES6)
-- Git & GitHub
+## Features
 
-## 📊 Coming Soon
-- Graph support (using Chart.js or Recharts)
-- Login & history tracking (with backend)
-- Downloadable reports (PDF/CSV)
+- Calculate returns for Lump Sum and SIP investments
+- Intuitive and responsive UI with modern design
+- Real-time results based on user inputs
+- Smooth animations and user-friendly layout
+- No backend required — fully frontend powered
 
-## 🌐 Live Demo (soon)
+---
+
+## Tech Stack
+
+- React
+- CSS (custom styles)
+- Vite (for fast development and build)
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js and npm installed
+
+### Installation
+
+```bash
+git clone https://github.com/KALEESWARANS-CYBER00/ProfitPulse.git
+cd ProfitPulse
+npm install
+npm run dev
