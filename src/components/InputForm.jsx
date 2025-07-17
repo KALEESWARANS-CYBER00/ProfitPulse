@@ -6,52 +6,50 @@ const InputForm = ({ onCalculate }) => {
   const [amount, setAmount] = useState('');
   const [rate, setRate] = useState('');
   const [years, setYears] = useState('');
-  const [type, setType] = useState('lump');
+  const [type, setType] = useState('One-Time Investment');
   const [toastMessage, setToastMessage] = useState('');
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!amount || !rate || !years) {
-    setToastMessage('All fields are required.');
-    return;
-  }
+    if (!amount || !rate || !years) {
+      setToastMessage('All fields are required.');
+      return;
+    }
 
-  const parsedAmount = parseFloat(amount);
-  const parsedRate = parseFloat(rate);
-  const parsedYears = parseFloat(years);
+    const parsedAmount = parseFloat(amount);
+    const parsedRate = parseFloat(rate);
+    const parsedYears = parseFloat(years);
 
+    if (isNaN(parsedAmount) || isNaN(parsedRate) || isNaN(parsedYears)) {
+      setToastMessage('Please enter valid numeric values.');
+      return;
+    }
 
-  if (isNaN(parsedAmount) || isNaN(parsedRate) || isNaN(parsedYears)) {
-    setToastMessage('Please enter valid numeric values.');
-    return;
-  }
+    if (parsedAmount <= 0) {
+      setToastMessage('Amount must be greater than 0.');
+      return;
+    }
 
-  if (parsedAmount <= 0) {
-    setToastMessage('Amount must be greater than 0.');
-    return;
-  }
+    if (parsedRate <= 0 || parsedRate > 100) {
+      setToastMessage('Interest rate must be between 0 and 100%.');
+      return;
+    }
 
-  if (parsedRate <= 0 || parsedRate > 100) {
-    setToastMessage('Interest rate must be between 0 and 100%.');
-    return;
-  }
+    if (parsedYears <= 0 || parsedYears > 100) {
+      setToastMessage('Duration must be between 1 and 100 years.');
+      return;
+    }
 
-  if (parsedYears <= 0 || parsedYears > 100) {
-    setToastMessage('Duration must be between 1 and 100 years.');
-    return;
-  }
+    setToastMessage('');
 
-  setToastMessage('');
-
-  onCalculate({
-    amount: parsedAmount,
-    rate: parsedRate,
-    years: parsedYears,
-    type,
-  });
-};
-
+    onCalculate({
+      amount: parsedAmount,
+      rate: parsedRate,
+      years: parsedYears,
+      type,
+    });
+  };
 
   return (
     <div className="form-container">
@@ -111,8 +109,8 @@ const InputForm = ({ onCalculate }) => {
             value={type}
             onChange={(e) => setType(e.target.value)}
           >
-            <option value="lump">Lump Sum</option>
-            <option value="sip">SIP (Monthly)</option>
+            <option value="One-Time Investment">One-Time Investment</option>
+            <option value="Recurring SIP">Recurring SIP</option>
           </select>
         </div>
 
