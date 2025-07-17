@@ -1,22 +1,30 @@
-/* App Wrapper - Dark Glass UI */
+html, body {
+  overflow-x: hidden;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .app-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* vertical */
-  align-items: center;     /* horizontal */
+  justify-content: flex-start;
+  align-items: center;
   min-height: 100vh;
-  padding: 2rem;
+  padding: 2rem 1rem;
   background: radial-gradient(circle at top left, #0f172a, #1e1b4b, #0f172a);
   color: #f8fafc;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   background-attachment: fixed;
   background-size: cover;
   backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 100%;
 }
 
-
-/* Gradient glowing heading */
 h1 {
   font-size: 2.75rem;
   font-weight: 800;
@@ -27,7 +35,6 @@ h1 {
   text-shadow: 0 3px 24px rgba(99, 102, 241, 0.35);
 }
 
-/* Navbar with buttons */
 .navbar {
   display: flex;
   gap: 1rem;
@@ -55,7 +62,6 @@ h1 {
   transform: translateY(-1px);
 }
 
-/* About Section */
 .about-section {
   background: rgba(30, 41, 59, 0.8);
   color: #f8fafc;
@@ -86,7 +92,6 @@ h1 {
   color: #cbd5e1;
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
   .app-wrapper {
     padding: 1.2rem;
@@ -119,31 +124,14 @@ h1 {
 }
 
 @media (max-width: 480px) {
-  h1 {
-    font-size: 1.8rem;
-  }
-
-  .navbar button {
-    font-size: 0.95rem;
-    padding: 0.6rem 1.2rem;
-  }
-}
-/* Ensure .app-wrapper stretches full width */
-.app-wrapper {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-/* Adjust padding for mobile */
-@media (max-width: 480px) {
   .app-wrapper {
     padding: 1rem 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
-  .about-section {
-    padding: 1rem;
-    margin-top: 1rem;
+  h1 {
+    font-size: 1.8rem;
   }
 
   .navbar {
@@ -153,42 +141,14 @@ h1 {
   }
 
   .navbar button {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
     width: 100%;
     max-width: none;
   }
-}
-html, body {
-  overflow-x: hidden;
-}
 
-* {
-  box-sizing: border-box;
-}
-.app-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* Instead of center */
-  align-items: center;
-  min-height: 100vh;
-  padding: 1rem;
-  padding-top: 2rem;  /* Adjust top padding */
-  padding-bottom: 2rem; /* Adjust bottom padding */
-  background: radial-gradient(circle at top left, #0f172a, #1e1b4b, #0f172a);
-  color: #f8fafc;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
-  background-attachment: fixed;
-  background-size: cover;
-  backdrop-filter: blur(10px);
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 100%;
-}
-
-/* Reduce padding further on very small screens */
-@media (max-width: 480px) {
-  .app-wrapper {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+  .about-section {
+    padding: 1rem;
+    margin-top: 1rem;
   }
 }
