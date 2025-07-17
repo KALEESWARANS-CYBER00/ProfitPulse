@@ -10,22 +10,48 @@ const InputForm = ({ onCalculate }) => {
   const [toastMessage, setToastMessage] = useState('');
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (amount <= 0 || rate <= 0 || years <= 0) {
-      setToastMessage('Please enter valid positive numbers.');
-      return;
-    }
+  if (!amount || !rate || !years) {
+    setToastMessage('All fields are required.');
+    return;
+  }
 
-    setToastMessage('');
+  const parsedAmount = parseFloat(amount);
+  const parsedRate = parseFloat(rate);
+  const parsedYears = parseFloat(years);
 
-    onCalculate({
-      amount: parseFloat(amount),
-      rate: parseFloat(rate),
-      years: parseFloat(years),
-      type,
-    });
-  };
+
+  if (isNaN(parsedAmount) || isNaN(parsedRate) || isNaN(parsedYears)) {
+    setToastMessage('Please enter valid numeric values.');
+    return;
+  }
+
+  if (parsedAmount <= 0) {
+    setToastMessage('Amount must be greater than 0.');
+    return;
+  }
+
+  if (parsedRate <= 0 || parsedRate > 100) {
+    setToastMessage('Interest rate must be between 0 and 100%.');
+    return;
+  }
+
+  if (parsedYears <= 0 || parsedYears > 100) {
+    setToastMessage('Duration must be between 1 and 100 years.');
+    return;
+  }
+
+  setToastMessage('');
+
+  onCalculate({
+    amount: parsedAmount,
+    rate: parsedRate,
+    years: parsedYears,
+    type,
+  });
+};
+
 
   return (
     <div className="form-container">
