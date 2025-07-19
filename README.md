@@ -6,7 +6,7 @@ ProfitPulse is a sleek and interactive investment calculator built using React. 
 
 ## Features
 
-- Calculate returns for Lump Sum and SIP investments
+- Calculate returns for One-time  and SIP investments
 - Intuitive and responsive UI with modern design
 - Real-time results based on user inputs
 - Smooth animations and user-friendly layout
